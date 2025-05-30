@@ -4,13 +4,16 @@ const { PORT } = process.env
 
 const signUp = require("./handlers/signUp");
 const logIn = require("./handlers/logIn");
+const getProfile = require("./handlers/getProfile");
 
 const app = express();
 
 app.use(express.json());
 
-app.post("/signup", signUp)
+app.post("/signup", signUp);
 app.get("/login", logIn);
+
+app.get("/profile/:_id", getProfile);
 
 // 404 handler as a middleware (catch-all)
 app.use((req, res) => {
