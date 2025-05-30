@@ -2,13 +2,15 @@ const express = require("express");
 require("dotenv").config();
 const { PORT } = process.env
 
-const  signUp  = require("./handlers/signUp");
+const signUp = require("./handlers/signUp");
+const logIn = require("./handlers/logIn");
 
 const app = express();
 
 app.use(express.json());
 
 app.post("/signup", signUp)
+app.get("/login", logIn);
 
 // 404 handler as a middleware (catch-all)
 app.use((req, res) => {
