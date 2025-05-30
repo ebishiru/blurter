@@ -38,7 +38,7 @@ Feel free to provide me comments or tips or hit me up for anything else!
 **user document:**
 ```
 {
-  userId: uuid v4
+  _id: uuid v4 (UserId)  
   username: String.
   email: String.
   password: String
@@ -52,8 +52,8 @@ Feel free to provide me comments or tips or hit me up for anything else!
 **post document:**
 ```
 {
-  postId: uuid v4
-  author: objectId
+  _id: uuid v4 (PostId)  
+  author: uuid v4
   content: String,
   imageUrl: string.
   likes: [ userId array ],
@@ -63,8 +63,8 @@ Feel free to provide me comments or tips or hit me up for anything else!
 **comment document:**
 ```
 {
-  postId: ObjectId,
-  author: ObjectId,
+  _id: uuid v4 (CommentId)  
+  author: uuid v4,
   text: String,
   createdAt: Date
   likes: [ userId array ]
@@ -73,9 +73,10 @@ Feel free to provide me comments or tips or hit me up for anything else!
 
 # Backend operations:
 
-Create user (registration)  
-Read user (login)  
-Update user (update profile)  
+Post user (registration)  
+Get user (login)
+Get user (view profile)  
+Update user (update profile)
 
 Create post   
 Update post (Edit post)  
