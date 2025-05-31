@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 app.post("/signup", signUp);
-app.get("/login", logIn);
+app.post("/login", logIn);
 
 app.get("/profile/:_id", getProfile);
 app.post("/profile", updateProfile);
