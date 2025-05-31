@@ -42,7 +42,7 @@ const Main = () => {
 
     return (
         <>
-        <h1>Welcome to Blurter</h1>
+        <h1 className="text-4xl font-bold text-blue-600">Welcome to Blurter</h1>
         <p>A microblogging and social networking app.</p>
         <p>Join millions and start sharing your blurts!!</p>
         <div>
