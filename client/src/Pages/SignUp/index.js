@@ -1,7 +1,11 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+
+import { CurrentUserContext } from "../../Context/CurrentUserContext";
 
 const SignUp = () => {
+    const navigate = useNavigate();
+    const [ currentUser, setCurrentUser ] = useContext(CurrentUserContext);
 
     const [ inputUsername, setInputUsername ] = useState("");
     const [ inputPassword, setInputPassword ] = useState("");
@@ -11,8 +15,29 @@ const SignUp = () => {
     const [ status, setStatus ] = useState("idle");
     const [ errorMessage, setErrorMessage ] = useState("");
 
+    //navigate to home if user is logged in
+    useEffect(() => {
+        if (currentUser) {
+            navigate("/home");
+        }
+    }, [currentUser, navigate])
+
     const handleSignUp = async (ev) => {
         ev.preventDefault();
+
+        //verify password and confirm password are the same
+        if (inputPassword !== inputConfirmPassword) {
+            setErrorMessage("Passwords do not match.")
+            setStatus("idle");
+            return;
+        }
+        //verify that email and confirm email are the same
+        if (inputEmail !== inputConfirmEmail) {
+            setErrorMessage("Emails do not match.")
+            setStatus("idle");
+            return;
+        }
+
         setStatus("processing");
         setErrorMessage("");
         const signUpData = {
@@ -30,16 +55,6 @@ const SignUp = () => {
             body
         }
         try {
-            if (inputPassword !== inputConfirmPassword) {
-                setErrorMessage("Passwords do not match.")
-                setStatus("idle");
-                return;
-            }
-            if (inputEmail !== inputConfirmEmail) {
-                setErrorMessage("Emails do not match.")
-                setStatus("idle");
-                return;
-            }
             const response = await fetch("/signup", options);
             const data = await response.json();
             if (data.status !== 201) {
@@ -48,6 +63,12 @@ const SignUp = () => {
             } else {
                 console.log(data.message);
                 setStatus("idle");
+                setCurrentUser(inputUsername);
+                setInputUsername("");
+                setInputPassword("");
+                setInputConfirmPassword("");
+                setInputEmail("");
+                setInputConfirmEmail("");
             }
         }
         catch (error) {
@@ -75,7 +96,7 @@ const SignUp = () => {
                     <button className="font-bold text-white bg-green-400 px-2 py-1 my-2 border-2 border-black rounded-md disabled:opacity-40" type="submit" disabled={status!=="idle"}>Create Account</button>
                     <p className="text-red-500 text-sm break-words max-w-xs mb-2">{errorMessage}</p>
                 </form>
-                <p>Already have an account? <Link className="text-green-500 font-bold underline" to="/signup">Sign In</Link></p>
+                <p>Already have an account? <Link className="text-green-500 font-bold underline" to="/landingPage">Sign In</Link></p>
             </div>
         </div>
         </>

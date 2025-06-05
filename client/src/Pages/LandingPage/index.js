@@ -1,11 +1,23 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
-const Main = () => {
+import { CurrentUserContext } from "../../Context/CurrentUserContext";
+
+const LandingPage = () => {
+    const navigate = useNavigate();
+    const [ currentUser, setCurrentUser ] = useContext(CurrentUserContext);
+
     const [ inputUsername, setInputUsername ] = useState("");
     const [ inputPassword, setInputPassword ] = useState("");
     const [ status, setStatus ] = useState("idle");
     const [ errorMessage, setErrorMessage ] = useState("");
+
+    //if user is logged in, redirect to home
+    useEffect(() => {
+        if (currentUser) {
+            navigate("/home");
+        }
+    }, [currentUser])
 
     const handleLogIn = async (ev) => {
         ev.preventDefault();
@@ -33,6 +45,7 @@ const Main = () => {
             } else {
                 setInputUsername("");
                 setInputPassword("");
+                setCurrentUser(inputUsername);
                 console.log(data.message);
             }
         } catch (error) {
@@ -43,7 +56,7 @@ const Main = () => {
 
     return (
         <>
-        <div className="bg-green-400 h-screen grid grid-cols-2 gap-x-5 ">
+        <div className="bg-green-400 lg:h-screen lg:grid grid-cols-2 gap-x-5 ">
             <div className="flex flex-col justify-center mx-20"> 
                     <h1 className="text-4xl font-bold bg-white p-3 m-5 border-2 border-black rounded-lg w-fit self-start">Welcome to Blurter</h1>
                     <p className="text-xl bg-green-100 p-3 m-5 border-2 border-black rounded-lg w-fit self-end">What's "Blurter"?</p>
@@ -52,7 +65,7 @@ const Main = () => {
                     <p className="text-xl bg-white p-3 m-5 border-2 border-black rounded-lg w-fit max-w-lg self-start">Blurter is for anyone and everyone. Join millions now and start blurting away!!</p>
             </div>
             <div className="flex flex-col justify-center items-center">
-                <div className="w-full max-w-sm px-12 py-8 border-2 border-black rounded-lg bg-white">
+                <div className="w-full max-w-sm my-5 px-12 py-8 border-2 border-black rounded-lg bg-white">
                     <h2 className="mb-3 text-2xl font-bold text-center">Sign in</h2>
                     <form onSubmit={handleLogIn} autoComplete="on">
                         <label className="block" htmlFor="username">Username</label>
@@ -75,5 +88,5 @@ const Main = () => {
     )
 }
 
-export default Main;
+export default LandingPage;
 

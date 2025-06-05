@@ -1,15 +1,17 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Main from "./Pages/Main";
+import LandingPage from "./Pages/LandingPage";
 import SignUp from "./Pages/SignUp/index";
+import Home from "./Pages/Home";
 
 const App = () => {
 
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Main />} />
+                <Route path="/landingPage" element={<LandingPage />} />
                 <Route path="/signup" element={<SignUp />} />
-                <Route path="*" element={<Navigate to="/" />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="*" element={<Navigate to="/landingPage" />} />
             </Routes>
         </Router>
     )
