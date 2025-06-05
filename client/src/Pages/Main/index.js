@@ -66,7 +66,7 @@ const Main = () => {
                         <button className="font-bold text-white bg-green-400 px-2 py-1 my-2 border-2 border-black rounded-md disabled:opacity-40" disabled={!inputUsername || !inputPassword || status === "logging"}type="submit">Log In</button>
                         <p className="text-red-500 text-sm break-words max-w-xs mb-2">{errorMessage}</p>
                     </form>
-                    <p>Don't have an account? <Link className="text-green-500 font-bold" to="/signup">Sign Up</Link></p>
+                    <p>Don't have an account? <Link className="text-green-500 font-bold underline" to="/signup">Sign Up</Link></p>
                 </div>
             </div>
             
