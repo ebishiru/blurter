@@ -12,8 +12,11 @@ const deleteBlurt = require("./handlers/deleteBlurt");
 
 const app = express();
 
-app.use(express.json());
+// Increase payload size limit for pictures
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
+// Routes
 app.post("/signup", signUp);
 app.post("/login", logIn);
 

@@ -7,7 +7,7 @@ const DB = "blurter";
 const USERS_COLLECTION = "users";
 
 const signUp = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, profilePicture } = req.body;
     const client = new MongoClient(MONGO_URI);
 
     //verify if minimum user params are provided
@@ -44,7 +44,8 @@ const signUp = async (req, res) => {
             _id: uuidv4(),
             username,
             email,
-            password
+            password,
+            profilePicture,
         };
         const result = await db.collection(USERS_COLLECTION).insertOne(newUser);
         
