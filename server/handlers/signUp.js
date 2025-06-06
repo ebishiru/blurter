@@ -52,13 +52,12 @@ const signUp = async (req, res) => {
         if (!result.acknowledged) {
             return res.status(500).json({
                 status: 500,
-                message: "Server issue - Could not create user. Please try again."
+                message: "Server issue - Could not create user."
             });
         }
         res.status(201).json({
             status: 201,
             message: "User successfully created.",
-            data: newUser
         })
         
     } catch (error) {

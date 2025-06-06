@@ -55,7 +55,6 @@ Feel free to provide me comments or tips or hit me up for anything else!
   _id: uuid v4 (PostId)  
   author: uuid v4
   content: String,
-  imageUrl: string.
   likes: [ userId array ],
   createdAt: Date
 }

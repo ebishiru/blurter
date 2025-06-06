@@ -6,6 +6,9 @@ const signUp = require("./handlers/signUp");
 const logIn = require("./handlers/logIn");
 const getProfile = require("./handlers/getProfile");
 const updateProfile = require("./handlers/updateProfile");
+const getBlurts = require("./handlers/getBlurts");
+const postBlurt = require("./handlers/postBlurt");
+const deleteBlurt = require("./handlers/deleteBlurt");
 
 const app = express();
 
@@ -16,6 +19,10 @@ app.post("/login", logIn);
 
 app.get("/profile/:_id", getProfile);
 app.post("/profile", updateProfile);
+
+app.get("blurts", getBlurts);
+app.post("/blurt", postBlurt);
+app.delete("/blurt", deleteBlurt);
 
 // 404 handler as a middleware (catch-all)
 app.use((req, res) => {
