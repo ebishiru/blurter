@@ -11,7 +11,7 @@ const getBlurts = async (req, res) => {
     try {
         await client.connect();
         const db = client.db(DB);
-        const blurts = await db.collection(BLURTS_COLLECTION).find().toArray;
+        const blurts = await db.collection(BLURTS_COLLECTION).find().toArray();
         res.status(200).json({
             status: 200,
             data: blurts

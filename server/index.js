@@ -20,7 +20,7 @@ app.post("/login", logIn);
 app.get("/profile/:_id", getProfile);
 app.post("/profile", updateProfile);
 
-app.get("blurts", getBlurts);
+app.get("/blurts", getBlurts);
 app.post("/blurt", postBlurt);
 app.delete("/blurt", deleteBlurt);
 
