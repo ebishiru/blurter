@@ -9,9 +9,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <>
         <AllBlurtsProvider>
-            <CurrentUserProvider>
-                <App />
-            </CurrentUserProvider>
+                <CurrentUserProvider>
+                    <App />
+                </CurrentUserProvider>
         </AllBlurtsProvider>
     </>
 )
