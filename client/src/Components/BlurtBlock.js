@@ -1,8 +1,14 @@
+import { useEffect, useState } from "react";
 
+const BlurtBlock = ({ author, content, createdAt, likes }) => {
+    const [ profilePicture, setProfilePicture ] = useState("");
+    const [ numberOfLikes, setNumberOfLikes ] = useState("#");
 
-const BlurtBlock = ({ author, profilePicture, content, createdAt, likes }) => {
+    //Convert likes array to number;
+    useEffect(()=>{
+        setNumberOfLikes(likes.length);
+    },[likes])
     
-    let numberOfLikes = likes.length;
     //Convert createdAt from string to Date object
     const date = new Date(createdAt);
 
@@ -25,15 +31,50 @@ const BlurtBlock = ({ author, profilePicture, content, createdAt, likes }) => {
         blurtMeridiem = "PM";
     }
 
+    //Get Profile picture from author
+    useEffect(()=>{
+        const fetchProfilePicture = async () => {
+            const userData = {
+                username: author,
+            }
+            const body = JSON.stringify( userData );
+            const options = {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body
+            }
+            try {
+                const response = await fetch("/profilePicture", options);
+                const { data } = await response.json();
+                setProfilePicture(data);
+            }
+            catch (error) {
+                console.error(error.message);
+            }
+        }
+        fetchProfilePicture();
+    },[author])
+
     return (
         <>
-        <div>
-            <img src={profilePicture} alt={author}/>
-            <span>{author}</span>
-            <p>{content}</p>
-            <span>{blurtHour}:{blurtMinutes} {blurtMeridiem}</span>
-            <span>{blurtDay}/{blurtMonth}/{blurtYear}</span>
-            <span>{numberOfLikes} Likes</span>
+        <div className="max-w-xl flex p-2 my-3 bg-green-100 border-2 border-black rounded-md">
+            {
+                profilePicture !== ""? (
+                    <img className="object-cover w-16 h-16 m-2 border-2 border-black rounded-full" src={profilePicture} alt={author}/>
+                ) : (
+                    <img className="object-cover w-16 h-16 m-2 border-2 border-black rounded-full" src="/assets/profile-picture.png" alt={author}/>
+                )
+            }
+            <div className="mx-5">
+                <p className="font-bold my-2">{author}</p>
+                <p className="my-2">{content}</p>
+                <span className="inline-block w-16 mr-5">{blurtHour}:{blurtMinutes}{blurtMeridiem}</span>
+                <span className="inline-block w-16 mr-5">{blurtDay}/{blurtMonth}/{blurtYear}</span>
+                <span className="inline-block w-16 mr-5">{numberOfLikes} Likes</span>
+            </div>
         </div>
         </>
     )

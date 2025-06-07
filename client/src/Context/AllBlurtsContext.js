@@ -19,7 +19,7 @@ const AllBlurtsProvider = ({children}) => {
     },[]);
 
     return (
-        <AllBlurtsContext.Provider value={{ allBlurts }}>
+        <AllBlurtsContext.Provider value={{ allBlurts, setAllBlurts }}>
             {children}
         </AllBlurtsContext.Provider>
     )

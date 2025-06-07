@@ -1,8 +1,10 @@
 import { useContext, useState, useEffect } from "react";
 import { CurrentUserContext } from "../Context/CurrentUserContext";
+import { AllBlurtsContext } from "../Context/AllBlurtsContext";
 
 const PostBlurtBlock = () => {
     const [ currentUser ] = useContext(CurrentUserContext);
+    const { allBlurts, setAllBlurts } = useContext(AllBlurtsContext);
     const [ inputBlurt, setInputBlurt ] = useState("");
     const [ status, setStatus ] = useState("idle");
     const [ errorMessage, setErrorMessage ] = useState(""); 
@@ -63,6 +65,7 @@ const PostBlurtBlock = () => {
             } else {
                 setInputBlurt("");
                 setStatus("idle");
+                setAllBlurts([data.data, ...allBlurts]);
             }
         }
         catch (error) {

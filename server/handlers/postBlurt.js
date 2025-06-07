@@ -42,6 +42,7 @@ const postBlurt = async (req, res) => {
         res.status(201).json({
             status: 201,
             message: "Blurt successfully created.",
+            data: newBlurt,
         })
 
     } catch (error) {
