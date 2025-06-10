@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../Context/CurrentUserContext";
 
 const NavBar = () => {
     const navigate = useNavigate();
-    const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+    const [ currentUser, setCurrentUser ] = useContext(CurrentUserContext);
 
     const handleLogOut = () => {
         setCurrentUser(null);

@@ -4,6 +4,7 @@ const { PORT } = process.env
 
 const signUp = require("./handlers/signUp");
 const logIn = require("./handlers/logIn");
+const getProfile = require("./handlers/getProfile");
 const getProfilePicture = require("./handlers/getProfilePicture");
 const updateProfile = require("./handlers/updateProfile");
 const getBlurts = require("./handlers/getBlurts");
@@ -20,8 +21,9 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.post("/signup", signUp);
 app.post("/login", logIn);
 
+app.post("/profile", getProfile);
 app.post("/profilepicture", getProfilePicture);
-app.post("/profile", updateProfile);
+app.post("/updateprofile", updateProfile);
 
 app.get("/blurts", getBlurts);
 app.post("/blurt", postBlurt);

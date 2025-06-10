@@ -5,9 +5,9 @@ const { MONGO_URI } = process.env;
 const DB = "blurter";
 const USERS_COLLECTION = "users";
 
-const getProfilePicture = async (req, res) => {
+const getProfile = async (req, res) => {
     const client = new MongoClient(MONGO_URI);
-    const { username } = req.body;
+    const { username } = req.body; 
     
     try {
         await client.connect();
@@ -16,24 +16,24 @@ const getProfilePicture = async (req, res) => {
         if (!user) {
             res.status(401).json({
                 status: 401,
-                message: "Could not find user information."
+                message: "Could not find user information.",
             })
         }
         res.status(201).json({
             status: 201,
-            data: user.profilePicture
+            data: user
         })
 
-    } catch(error) {
+    } catch (error) {
         res.status(502).json({
             status: 502,
             message: error.message
         })
-
+    
     } finally {
         await client.close();
-    }
+    } 
 
 }
 
-module.exports = getProfilePicture ;
+module.exports = getProfile;
