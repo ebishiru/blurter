@@ -19,7 +19,7 @@ const NavBar = () => {
                     <img className="w-12 h-12" src="/assets/message.png"/>
                 </div>
                 <NavLink className="w-64 px-3 py-5 text-xl font-bold text-center hover:bg-green-300" to={"/home"}>Home</NavLink>
-                <NavLink className="w-64 px-3 py-5 text-xl font-bold text-center hover:bg-green-300" to={"/profile"}>Profile</NavLink>
+                <NavLink className="w-64 px-3 py-5 text-xl font-bold text-center hover:bg-green-300" to={"/profilePage"}>Profile</NavLink>
                 <NavLink className="w-64 px-3 py-5 text-xl font-bold text-center hover:bg-green-300" to={"/followers"}>Friends</NavLink>
                 <button className="w-64 px-3 py-5 text-xl font-bold text-center rounded-b-lg border-t-2 border-black hover:bg-red-300" onClick={handleLogOut}>Log Out</button>
             </div>
