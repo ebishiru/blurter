@@ -3,12 +3,15 @@ import { AllBlurtsContext } from "../../Context/AllBlurtsContext";
 import { CurrentUserContext } from "../../Context/CurrentUserContext";
 import PostBlurtBlock from "../../Components/PostBlurtBlock";
 import BlurtBlock from "../../Components/BlurtBlock";
+import NavBar from "../../Components/NavBar";
 
 
 const Home = () => {
     const { allBlurts } = useContext(AllBlurtsContext);
 
     return (
+        <>
+        <NavBar />
         <div className="bg-green-400 min-h-screen flex items-center justify-center">
             <div className="w-full max-w-xl">
                 <PostBlurtBlock />
@@ -25,6 +28,7 @@ const Home = () => {
                 }
             </div>
         </div>
+        </>
     )
 }
 
