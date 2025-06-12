@@ -10,7 +10,7 @@ const ProfileBlock = ({username}) => {
 
         const fetchProfile = async () => {
             const currentUserData = {
-                username: currentUser
+                username
             }
             const body = JSON.stringify( currentUserData );
             const options = {
@@ -37,14 +37,23 @@ const ProfileBlock = ({username}) => {
     return (
         <>
         { profile ? (
-            <div>
-                <p>{profile.username}</p>
-                <img src={profile.profilePicture} alt="Profile Picture" />
-                <span>{profile.followers.length}</span>
-                <span>Followers</span>
-                <span>{profile.following.length}</span>
-                <span>Following</span>
-            </div>
+            <>
+                <div className="p-2 my-3 flex justify-center items-center bg-green-100 border-2 border-black rounded-md">
+                    <div>
+                        <p className="text-4xl font-bold my-2">{profile.username}</p>
+                        <span className="text-lg font-bold ">{profile.followers ? profile.followers.length : 0}</span>
+                        <span className="text-lg font-bold ml-1 mr-2">Followers</span>
+                        <span className="text-lg font-bold ">{profile.following ? profile.following.length : 0}</span>
+                        <span className="text-lg font-bold ml-1 mr-2">Following</span>
+                    </div>
+                    <div>
+                        <img className="object-cover w-32 h-32 m-2 border-2 border-black rounded-full" src={profile.profilePicture} alt="Profile Picture" />
+                    </div>
+                </div>
+                <div className="p-2 my-3 flex justify-center items-center bg-green-100 border-2 border-black rounded-md">
+                    <p className="m-2">{profile.bio ? profile.bio : "This user hasn't written a bio yet."}</p>
+                </div>
+            </>
         ):(
             <p>Loading</p>
         )}
