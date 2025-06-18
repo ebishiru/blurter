@@ -22,7 +22,10 @@ const signUp = async (req, res) => {
         const db = client.db(DB);
 
         //Verify if username is already taken
-        const existingUsername = await db.collection(USERS_COLLECTION).findOne({ username });
+        const existingUsername = await db.collection(USERS_COLLECTION).findOne({
+            username: { $regex: `^${username}$`, $options: 'i' }
+        });
+
         if (existingUsername) {
             return res.status(409).json({
                 status: 409,

@@ -6,14 +6,14 @@ const DB = "blurter";
 const USERS_COLLECTION = "users";
 
 const updateProfile = async (req, res) => {
-    const { _id, profilePicture, bio, followers, following } = req.body;
+    const { username, profilePicture, bio, followers, following } = req.body;
     const client = new MongoClient(MONGO_URI);
 
     //Verify that _id is provided
-    if (!_id) {
+    if (!username) {
         return res.status(400).json({
             status: 400,
-            message: "User Id is missing. Please try again."
+            message: "Username is missing. Please try again."
         })
     }
 
@@ -40,7 +40,7 @@ const updateProfile = async (req, res) => {
         })
     }
 
-    const query = { _id };
+    const query = { username };
     const updatedValues = {
         $set: updatedFields
         };
@@ -50,7 +50,7 @@ const updateProfile = async (req, res) => {
         const db = client.db(DB);
 
         //Verify that user exists
-        const foundUser = await db.collection(USERS_COLLECTION).findOne({ _id });
+        const foundUser = await db.collection(USERS_COLLECTION).findOne({ username });
         if (!foundUser) {
             return res.status(404).json({
                 status: 404,

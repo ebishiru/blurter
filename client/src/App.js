@@ -3,6 +3,7 @@ import LandingPage from "./Pages/LandingPage";
 import SignUp from "./Pages/SignUp/index";
 import Home from "./Pages/Home";
 import ProfilePage from "./Pages/ProfilePage";
+import EditProfilePage from "./Pages/EditProfilePage";
 
 const App = () => {
 
@@ -13,6 +14,7 @@ const App = () => {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/profilePage" element={<ProfilePage />} />
+                <Route path="/editProfilePage" element={<EditProfilePage />} />
                 <Route path="*" element={<Navigate to="/landingPage" />} />
             </Routes>
         </Router>
