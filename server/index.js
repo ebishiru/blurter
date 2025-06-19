@@ -10,6 +10,7 @@ const updateProfile = require("./handlers/updateProfile");
 const getBlurts = require("./handlers/getBlurts");
 const postBlurt = require("./handlers/postBlurt");
 const deleteBlurt = require("./handlers/deleteBlurt");
+const toggleLikeForBlurt = require("./handlers/toggleLikeForBlurt");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.post("/updateprofile", updateProfile);
 app.get("/blurts", getBlurts);
 app.post("/blurt", postBlurt);
 app.delete("/blurt", deleteBlurt);
+app.post("/togglelikeforblurt", toggleLikeForBlurt);
 
 // 404 handler as a middleware (catch-all)
 app.use((req, res) => {

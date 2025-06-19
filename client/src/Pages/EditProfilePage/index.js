@@ -124,6 +124,7 @@ const EditProfilePage = () => {
                             <div className="flex justify-center">
                                 <button className="font-bold text-white bg-green-400 px-2 py-1 my-2 border-2 border-black rounded-md disabled:opacity-40" disabled={ status !== "idle" }type="submit" >Update Profile</button>
                             </div>
+                            <p className="text-red-500 text-sm break-words max-w-xs mb-2">{errorMessage}</p>
                         </form>
                     </div>
                 ):(
